@@ -30,6 +30,7 @@ body {
     color: rgb(226, 221, 206);
     width: 100%;
     margin: 0;
+    transition: color .5s ease;
 }
 
 .button-group {
@@ -87,5 +88,5 @@ body {
 }
 
 .paused {
-    color: rgb(230, 202, 118);
+    color: rgb(230, 202, 118) !important;
 }
