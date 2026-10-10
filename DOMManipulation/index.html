@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css" />
+    <title>DOM Manipulation Excercise</title>
+</head>
+
+<body>
+    <form id="article-form" class="container">
+        <h1>Customize</h1>
+        <span class="form-group">
+            <label for="article-title-input">Title</label>
+            <input id="article-title-input" type="text" placeholder="Article title" />
+        </span>
+        <span class="form-group">
+            <label for="article-title-input">Short text</label>
+            <input id="article-text-input" type="text" placeholder="Article text" maxlength="65" />
+        </span>
+        <button id="submit-form" type="submit">Submit</button>
+    </form>
+    <div id="article-output" class="container article-output-container">
+        <script src="DOMManipulation.js"></script>
+    </div>
+</body>
+
+</html>
