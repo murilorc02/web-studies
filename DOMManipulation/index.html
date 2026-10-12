@@ -5,25 +5,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css" />
-    <title>DOM Manipulation Excercise</title>
+    <script src="https://kit.fontawesome.com/d6f354eb2b.js" crossorigin="anonymous"></script>
+    <title>DOM Manipulation Exercise</title>
 </head>
 
 <body>
-    <form id="article-form" class="container">
-        <h1>Customize</h1>
-        <span class="form-group">
-            <label for="article-title-input">Title</label>
-            <input id="article-title-input" type="text" placeholder="Article title" />
-        </span>
-        <span class="form-group">
-            <label for="article-title-input">Short text</label>
-            <input id="article-text-input" type="text" placeholder="Article text" maxlength="65" />
-        </span>
-        <button id="submit-form" type="submit">Submit</button>
+    <h1>To Do List</h1>
+    <form class="form-group" novalidate>
+        <input id="input-title" type="text" placeholder="Task title" required/>
+        <button id="submit-entry" type="submit">Submit</button>
     </form>
-    <div id="article-output" class="container article-output-container">
-        <script src="DOMManipulation.js"></script>
-    </div>
+    <ol id="list-output">
+        <!-- this will be filled by the JS Output -->
+    </ol>
+
+    <script src="DOMManipulation.js"></script>
 </body>
 
 </html>

@@ -1,69 +1,199 @@
 body {
-    background-color: rgb(26, 21, 32);
+    background-color: rgb(22, 17, 27);
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-items: center;
     color: rgb(251, 255, 233);
     gap: 10px;
 }
 
-.container {
-    border: 1px solid #ffffff00;
-    border-radius: 5px;
-    padding: 20px;
-    background-color: #281e2e;
-    width: 70%;
-}
-
 h1,
 h2,
-label,
 input,
 button {
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
-label {
+#submit-entry {
     font-weight: 600;
-}
-
-button {
-    text-transform: uppercase;
-    font-weight: 600;
+    border: none;
     border-radius: 30px;
     width: 100px;
-    padding: 10px;
+    padding: 13px 0 13px 0;
     align-self: center;
     background-color: rgb(255, 191, 0);
 }
 
-input {
-    border-radius: 4px;
-    padding: 10px;
-    justify-content: center;
-}
-
-article {
-    text-align: center;
-    align-items: center;
-}
-
-article h2 {
-    text-transform: capitalize;
-}
-
-article p {
-    text-align: start;
-    font-size: large;
-}
-
-#article-form {
+ol {
     display: flex;
+    width: 80%;
+    max-width: 560px;
+    box-sizing: border-box;
     flex-direction: column;
-    gap: 20px;
+    align-items: center;
+    margin: 20px 0 0 0;
+    padding: 0 10px 0 10px;
+}
+
+li {
+    display: flex;
+    width: 100%;
+    min-width: 380px;
+    box-sizing: border-box;
+    justify-content: space-between;
+    padding: 5px 18px 5px 18px;
+    margin: 0 0 16px 0;
+    align-items: center;
+    background-color: #221927;
+    border-radius: 10px;
 }
 
 .form-group {
     display: flex;
-    flex-direction: column;
+    width: 100%;
+    max-width: 560px;
+    gap: 30px;
+    justify-content: center;
+}
+
+#input-title {
+    border-radius: 4px;
+    padding: 10px;
+    justify-content: center;
+    border: solid yellow;
+    color: rgb(248, 239, 189);
+    background-color: transparent;
+    border-radius: 0;
+    border-bottom-left-radius: 2px;
+    border-bottom-right-radius: 2px;
+    border-width: 0 0 1px 0;
+    width: 300px;
+    transition: all .3s ease;
+}
+
+#input-title:focus {
+    border-bottom-left-radius: 8px;
+    border-width: 0 0 3px 0;
+    outline: none;
+}
+
+#input-title.invalid-shake {
+    animation: shake 0.3s ease-in-out;
+}
+
+@keyframes shake {
+    0%, 100% {
+        transform: translateX(0);
+        border-color: yellow;
+    }
+    25% {
+        transform: translateX(-5px);
+        border-color: red;
+    }
+    75% {
+        transform: translateX(5px);
+        border-color: red;
+    }
+}
+
+.action-group {
+    display: flex;
+    width: 25%;
+    margin: 0;
+    padding: 0;
+    justify-content: end;
+    gap: 10px;
+}
+
+.actions {
+    display: inline-flex;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+    min-width: 45px;
+    min-height: 45px;
+    border-radius: 100%;
+    padding: 3px;
+    background-color: transparent;
+    border: none;
+}
+
+.actions:hover {
+    background-color: #2d2133;
+}
+
+.input-check {
+    position: absolute;
+    padding: 0;
+    margin: 0;
+    width: 16px;
+    height: 16px;
+    opacity: 0;
+    z-index: 1;
+}
+
+.checkbox {
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    border: solid 2px rgba(2, 199, 2, 0.555);
+    border-radius: 4px;
+}
+
+.checkbox:after {
+  content: "";
+  position: absolute;
+  display: none;
+  transition: all .5s ease;
+}
+
+.actions input:checked ~ .checkbox:after {
+  display: block;
+}
+
+.checkbox::after {
+    top: -8px;
+    left: 2px;
+    bottom: 8px;
+    width: 11px;
+    height: 17px;
+    border: solid rgba(2, 199, 2);
+    border-width: 0 3px 3px 0;
+    transform: rotate(45deg);
+}
+
+.input-check:checked ~ .checkbox {
+    border-color: rgba(2, 199, 2);
+}
+
+.check-action:hover > .checkbox {
+    border-color: rgba(2, 199, 2);
+}
+
+.btn-delete {
+    display: inline-flex;
+    border: none;
+    width: 18px;
+    height: 18px;
+    background-color: transparent;
+    align-content: center;
+    justify-content: center;
+    color: rgba(255, 0, 0, 0.575);
+}
+
+.delete-action:hover > .btn-delete {
+    color: rgba(255, 0, 0);
+}
+
+.list-entry.done .item-name {
+    text-decoration: line-through;
+    opacity: 0.6;
+}
+
+.fa-trash-can {
+    padding: 0;
+    margin: 0;
+    width: inherit;
+    height: inherit;
 }

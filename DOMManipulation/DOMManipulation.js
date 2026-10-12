@@ -1,18 +1,63 @@
-const articleOutput = document.querySelector('#article-output');
+const submitForm = document.querySelector('.form-group');
+const titleInput = document.querySelector('#input-title');
+const toDoList = document.querySelector('#list-output');
 
-const body = document.querySelector('body');
-const bodyStyles = getComputedStyle(body);
-const backgroundHighlight = bodyStyles.backgroundColor;
+const checkItem = document.querySelectorAll('.check-action');
+const deleteItem = document.querySelectorAll('.delete-action');
 
-const article = document.createElement('article');
+function createListItem(title) {
+    const listItem = document.createElement('li');
+    listItem.classList.add('list-entry');
+    
+    listItem.innerHTML = `
+        <p class="item-name"></p>
+        <div class="action-group">
+            <label class="actions check-action">
+                <input type="checkbox" class="input-check"/>
+                <span class="checkbox"></span>
+            </label>
+            <label class="actions delete-action"><button class="btn-delete">
+                <i class="fa-regular fa-trash-can"></i>
+            </button></label>
+        </div>
+    `
 
-const title = document.createElement('h2');
-title.innerText = 'This is an article';
-title.style.backgroundColor = backgroundHighlight;
+    listItem.querySelector('.item-name').textContent = title;
+    return listItem;
+};
 
-const paragraph = document.createElement('p');
-paragraph.innerText = 'Right now you are reading a really important information.'
+function shake(element) {
+    element.classList.add('invalid-shake');
+    element.addEventListener('animationend', () => {
+        element.classList.remove('invalid-shake');
+    }, { once: true });
+}
 
-article.appendChild(title);
-article.appendChild(paragraph);
-articleOutput.appendChild(article);
+submitForm.addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    if (!titleInput.value.trim()) {
+        shake(titleInput);
+        return;
+    }
+     
+    toDoList.appendChild(
+        createListItem(titleInput.value)
+    );
+    titleInput.value = '';
+    titleInput.focus();
+});
+
+toDoList.addEventListener('click', function(e) {
+    const deleteButton = e.target.closest('.btn-delete');
+    if (deleteButton) {
+        deleteButton.closest('li').remove();
+    }
+});
+
+toDoList.addEventListener('change', function(e) {
+    const checkInput = e.target.closest('.input-check');
+    if (!checkInput) return;
+    
+    checkInput.closest('li').classList.toggle('done', checkInput.checked);
+});
