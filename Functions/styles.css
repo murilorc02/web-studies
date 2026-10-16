@@ -91,6 +91,7 @@ hr {
     color: white;
 }
 
-.btn-action {
+.btn-del,
+.btn-clear {
     background-color: rgb(40, 110, 140);
 }
