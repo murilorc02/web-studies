@@ -46,7 +46,22 @@ function calculator() {
                 if (el.classList.contains('btn-result')) {
                     display.value = this.calculate(display.value);
                 }
-            })
+            });
+
+            document.addEventListener('keyup', (e) => {
+                const keyLabels = {
+                    Enter: '=',
+                    Backspace: '←',
+                    Delete: 'C',
+                    Escape: 'C'
+                };
+
+                const label = keyLabels[e.key] ?? e.key.toUpperCase();
+                const button = [...calcBody.querySelectorAll('button')].find(
+                    b => b.innerHTML == label
+                );
+                button && button.click();
+            });
         },
 
         fromButtonToDisplay(value) {
