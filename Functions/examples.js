@@ -1,9 +1,23 @@
-function awaitSimulator() {
-    return Math.floor(Math.random() * 2000 + 1000);
-}
+// IIFE (Immediately Invoked Function Expression) ================================================================
+(function main(param1, param2, param3) {
 
-// IIFE (Immediately Invoked Function Expression) + Callback example ================================
-(function (param1, param2, param3) {
+    console.log('IIFE STARTED');
+
+    const steps = [f1, f2, f3, f4, f5, f6];
+
+    // Recursive function + Callback example =========================================================================
+    function callbackRunner(f = 0) {
+        if (f >= steps.length) return;
+
+        console.log(`\nRecursive function round ${f + 1}`)
+        let awaitSimulator = Math.floor(Math.random() * 2000 + 1000);
+
+        setTimeout(() => {
+            steps[f]();
+            callbackRunner(f + 1);
+        }, awaitSimulator);
+    }
+    callbackRunner();
 
     const nameList = [
         ['Jason', 'Momoa'],
@@ -13,72 +27,42 @@ function awaitSimulator() {
     ];
 
     function f1() {
-        setTimeout(() => {
-            console.log(param1);
-            f1Callback();
-        }, awaitSimulator());
+        console.log(param1);
     }
+
     function f2() {
-        setTimeout(() => {
-            console.log(param2);
-            f2Callback();
-        }, awaitSimulator())
+        console.log(param2);
     }
+
     function f3() {
-        setTimeout(() => {
-            console.log(param3, ':)\n');
-            f3Callback();
-        }, awaitSimulator())
+        console.log(param3, ':)');
     }
+
     function f4() {
-        setTimeout(() => {
-            console.log('\nFactory Function Tests ----------------------------');
+        console.log('Factory Function Tests ----------------------------');
 
-            const person1 = createPerson('Jonathan', '', 46, 1.68);
-            console.log(`BMI: ${person1.bmi}`); // getter
-            console.log(`Before change: ${person1.fullName}`); // getter
-            person1.fullName = ('Johnny Test'); // setter
-            console.log(`After change: ${person1.fullName}`); // getter
-            f4Callback();
-        }, awaitSimulator())
+        const person1 = createPerson('Jonathan', '', 46, 1.68);
+        console.log(`BMI: ${person1.bmi}`); // getter
+        console.log(`Before change: ${person1.fullName}`); // getter
+        person1.fullName = ('Johnny Test'); // setter
+        console.log(`After change: ${person1.fullName}`); // getter
     }
+
     function f5() {
-        setTimeout(() => {
-            console.log('\nConstructor Function (legacy) Tests ----------------------------')
-            nameList.forEach((row) => {
-                const person = new PersonLegacy(row[0], row[1]);
-                person.getData();
-            })
-            f5Callback();
-        }, awaitSimulator())
+        console.log('Constructor Function (legacy) Tests ----------------------------')
+        nameList.forEach((row) => {
+            const person = new PersonLegacy(row[0], row[1]);
+            person.getData();
+        })
     }
+
     function f6() {
-        setTimeout(() => {
-            console.log('\nConstructor Function (modern) Tests ----------------------------')
-            nameList.forEach((row) => {
-                const person = new PersonModern(row[0], row[1]);
-                person.getData();
-            })
-        }, awaitSimulator())
+        console.log('Constructor Function (modern) Tests ----------------------------')
+        nameList.forEach((row) => {
+            const person = new PersonModern(row[0], row[1]);
+            person.getData();
+        })
     }
-
-    function f1Callback() {
-        f2();
-    }
-    function f2Callback() {
-        f3();
-    }
-    function f3Callback() {
-        f4();
-    }
-    function f4Callback() {
-        f5();
-    }
-    function f5Callback() {
-        f6();
-    }
-
-    f1();
 })('Playing', 'Around', 'a Little');
 
 // Constructor function (legacy) =================================================================================
