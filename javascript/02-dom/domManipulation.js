@@ -10,32 +10,28 @@ load();
 
 function createListItem(title, checked) {
     const listItem = document.createElement('li');
-    listItem.classList.add('list-entry');
 
     listItem.innerHTML = `
         <p class="item-name"></p>
         <div class="action-group">
             <label class="actions check-action">
                 <input type="checkbox" class="input-check"/>
-                <span class="checkbox"></span>
             </label>
             <label class="actions delete-action"><button class="btn-delete">
-                <i class="fa-regular fa-trash-can"></i>
+                Delete
             </button></label>
         </div>
     `
+    listItem.style.display = 'flex';
+    listItem.style.flexDirection = 'row';
+    listItem.style.justifyContent = 'space-between';
+    listItem.style.alignItems = 'center';
+    listItem.style.maxWidth = '230px';
 
     listItem.querySelector('.item-name').textContent = title;
     listItem.querySelector('.input-check').checked = checked;
     checked && listItem.classList.toggle('done', checked);
     return listItem;
-}
-
-function shake(element) {
-    element.classList.add('invalid-shake');
-    element.addEventListener('animationend', () => {
-        element.classList.remove('invalid-shake');
-    }, { once: true });
 }
 
 function saveTaskToMemory(item) {
@@ -79,14 +75,6 @@ submitForm.addEventListener('submit', function (e) {
     e.preventDefault();
 
     if (!titleInput.value.trim()) {
-        shake(titleInput);
-        return;
-    }
-
-    if (tasks.find(t => t.title == titleInput.value.trim())) {
-        alert('This task already exists');
-        titleInput.value = '';
-        titleInput.focus();
         return;
     }
 
