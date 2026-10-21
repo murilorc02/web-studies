@@ -3,7 +3,7 @@
 
     console.log('IIFE STARTED');
 
-    const steps = [f1, f2, f3, f4, f5, f6];
+    const steps = [f1, f2, f3, f4, f5, f6, f7];
 
     // Recursive function + Callback example =========================================================================
     function callbackRunner(f = 0) {
@@ -62,6 +62,14 @@
             const person = new PersonModern(row[0], row[1]);
             person.getData();
         })
+    }
+
+    function f7() {
+        console.log('Generator Function Test ----------------------------');
+        for (let i = 0; i < 10; i++) {
+            let current = gen.next();
+            console.log(current, '\t|', current.value);
+        }
     }
 })('Playing', 'Around', 'a Little');
 
@@ -129,3 +137,13 @@ function createPerson(firstName, lastName, weight, height) {
         }
     }
 }
+
+// Generator function ============================================================================================
+function* idMaker() {
+    let index = 0;
+    while (true) {
+        yield index++;
+    }
+}
+
+const gen = idMaker();
