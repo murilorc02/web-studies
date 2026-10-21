@@ -1,3 +1,5 @@
+// Factory function practice
+
 function calculator() {
     const calcBody = document.querySelector('.calculator');
     const display = calcBody.querySelector('.display');
