@@ -74,7 +74,7 @@
 })('Playing', 'Around', 'a Little');
 
 // Constructor function (legacy) =================================================================================
-//          This format will probably only be used for old projects                                             ==
+//          This format will probably only be used by old projects                                              ==
 // ===============================================================================================================
 function PersonLegacy(firstName, lastName) {
     // Private
@@ -87,14 +87,19 @@ function PersonLegacy(firstName, lastName) {
     this.FirstName = firstName;
     this.LastName = lastName;
 
-    this.getData = function () {
-        console.log('Identifier:', Identifier, '\t| FirstName:', this.FirstName, '\t| LastName:', this.LastName);
-    };
+    this.getData = function () { // This can get the identifier, but is created for each instance of person
+        console.log('<FROM CONSTRUCTOR> Identifier:', Identifier, '\t| FirstName:', this.FirstName, '\t| LastName:', this.LastName);
+    }
+}
+
+PersonLegacy.prototype.getData = function () { // This is only created once, then refferenced by every person created afterwards
+    //                                            However, it cannot get the identifier, since it's a prop created inside the constructor
+    console.log('<FROM PROTOTYPE> Identifier:', this.Identifier, '\t| FirstName:', this.FirstName, '\t| LastName:', this.LastName);
 }
 
 // Constructor function (modern) =================================================================================
 class PersonModern {
-    // Private
+    // Private --
     #identifier;
 
     constructor(firstName, lastName) {
@@ -103,7 +108,10 @@ class PersonModern {
         this.#identifier = Math.round(Math.random() * 9999);
     }
 
-    // Public
+    // Public --
+    // When creating something like "const p = new Person()", every new instance will automatically search for the 
+    // functions inside the prototype of PersonModern instead of hosting them inside theirself.
+    // Also, unlike PersonLegacy, this can both be at prototype and "read" the private identifier.
     getData() {
         console.log('Identifier:', this.#identifier, '\t| FirstName:', this.FirstName, '\t| LastName:', this.LastName);
     };
