@@ -71,3 +71,27 @@ console.log((`Split + flatMap + filter:`).padEnd(25), filtered);
 console.log(`\n======================== Join - merges the last example back into a full string ========================\n`);
 const merged = filtered.join(' ');
 console.log(`After join: "${merged}"`);
+
+console.log(`\n=========================== Reduce - reduces the list down to a single value ===========================\n`);
+
+const numbers = [10, 20, 30, 40, 50];
+const result = numbers.reduce((accumulator, currentValue) => accumulator += currentValue, 1000);
+// When not defining the initial value after the function, the accumulator will always start as the value of the first index
+// E.g.:        const cars = [
+//                  { make: Toyota, model: Trueno },
+//                  { make: Nissan, model: 370z },
+//                  { make: Volkswagen, model: Beetle }
+//              ]
+//              cars.reduce((accumulator, currentValue) => console.log(accumulator, currentValue));
+//                                                                    └ { make: Toyota, model: Trueno } { make: Nissan, model: 370z }
+//              cars.reduce((accumulator, currentValue) => console.log(accumulator, currentValue), 1000000);
+//                                                                    └ 1000000 { make: Toyota, model: Trueno }
+
+console.log(`Sample array: `, numbers);
+console.log(`Post reduce + 1000 (initial value): `, result);
+
+console.log(`\n========================== For Each - executes a callback on every array item ==========================\n`);
+
+array.forEach((value, index, array) => {
+    console.log(`Index ${index}: ${value}`);
+});
