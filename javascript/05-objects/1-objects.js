@@ -8,6 +8,14 @@ class Car {
         this.model = model;
     }
 
+    /* Custom prototype props (non-functions) can also be created inside the class body by using this syntax:
+    static {
+        Car.prototype.gasCapacity = '60l'
+    }
+        * It doesn't make a difference from calling Car.prototype.gasCapacity = '601' from outside the class body,
+          that's only a convenience for keeping the code grouped together
+    */
+
     odometer = 0;
     year;
 
@@ -20,6 +28,19 @@ class Car {
 }
 
 const car = new Car('Toyota', 'Etios');
+
+// We can also create an object like this ========================================================================
+
+//                                                    ┬ Inherits 
+const carWithObjectCreate = Object.create(Car.prototype, {
+    make: {
+        writable: true,
+        configurable: true,
+        enumerable: true,
+        value: 'Peugeot'
+    }
+})
+console.log(`'Object.create' test:`, carWithObjectCreate.getDescription()); // Won't show model since it only inherited the original class' functions
 
 // To define/modify a property ===================================================================================
 
