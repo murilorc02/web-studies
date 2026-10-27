@@ -19,10 +19,18 @@ class Car {
     odometer = 0;
     year;
 
+    get make() {
+        return this.make;
+    }
+
+    set make(name) {
+        this.make = name;
+    }
+
     // Methods created inside the class body will automatically be stored at the prototype when creating an object by "new Car()"
     //      Unlike the factory function and the legacy constructor function, classes do not need to use things as- 
     //      "Car.prototype.getDescription = function () {}" to not store it at each new instance
-    getDescription() {
+    getDescription() { // could also turn this into a propper getter as 'get description()' but I was using it to test prototypes and functions too
         return `${this.make} ${this.model}`;
     }
 }
@@ -31,7 +39,7 @@ const car = new Car('Toyota', 'Etios');
 
 // We can also create an object like this ========================================================================
 
-//                                                    ┬ Inherits 
+//                                                    ┬ Inherits Car's functions and custom prototype fields
 const carWithObjectCreate = Object.create(Car.prototype, {
     make: {
         writable: true,
