@@ -71,7 +71,7 @@ function load() {
     }
 }
 
-submitForm.addEventListener('submit', function (e) {
+submitForm.addEventListener('submit', function (e) { // Gets every event triggered within child elements through bubbling
     e.preventDefault();
 
     if (!titleInput.value.trim()) {
@@ -86,7 +86,7 @@ submitForm.addEventListener('submit', function (e) {
     titleInput.focus();
 });
 
-toDoList.addEventListener('click', function (e) {
+toDoList.addEventListener('click', function (e) { // Gets every event triggered within child elements through bubbling
     const deleteButton = e.target.closest('.btn-delete');
     if (deleteButton) {
         const item = deleteButton.closest('li');
@@ -95,7 +95,7 @@ toDoList.addEventListener('click', function (e) {
     }
 });
 
-toDoList.addEventListener('change', function (e) {
+toDoList.addEventListener('change', function (e) { // Gets every event triggered within child elements through bubbling
     const checkInput = e.target.closest('.input-check');
     if (!checkInput) return;
 
