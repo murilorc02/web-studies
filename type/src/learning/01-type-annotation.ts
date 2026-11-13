@@ -25,6 +25,17 @@ function returnError(): never {
     throw new Error('ERROR');
 }
 
+// Union - Variable can be set as more than one type
+let union: string | number;
+
+// Literals
+let n = 12 | 20 | 30 as const;
+    // OR let n: 12 | 20 | 30 = 12;
+// n = 13; This will result in an error since 13 is not on the accepted types for n
+function literalsSample(param: 'Value 1' | 'Value 2' | 'Value 3') { 
+    return param;
+}
+
 // Enum
 enum Genre { 
     ACTION, // 0
@@ -55,18 +66,3 @@ const gameConsole: {
 
 gameConsole.year = 2018;
 gameConsole.modded = false; // → Creating a prop like this won't work like in JS UNLESS we create a key to allow it (as in the case of the last prop, that is an array that store multiple string keys)
-
-// Functions                        ┬> Optional in this scenario since TS auto detects the return as a number, but should use when the type is not inferred
-function sum(x: number, y: number): number { 
-    return x + y;
-}
-
-function hello(): void { // A void type function means the function doesn't return any value. I declared the type for practice but is not really needed since it's already inferred
-    console.log('Hi!');
-}
-
-const sum2: (x: number, y: number) => number = (x, y) => x + y;
-
-export function sumMultiple(...args: number[]): number { 
-    return args.reduce((prev, next) => prev + next);
-}
