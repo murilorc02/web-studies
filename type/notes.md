@@ -1,5 +1,7 @@
 # Notes
 
+``IMPORTANT for Code-Runner extension``: open `/type` as a sepparate window, otherwise the Code-Runner button will try to use the config from root
+
 To compile, run this command at `/type`: `npx tsc`
 
 Commands used to set up the dependencies for this folder:
