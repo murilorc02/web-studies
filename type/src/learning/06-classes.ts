@@ -1,7 +1,7 @@
 export class Person {
     public readonly name: string;
     // └ 'public' is optional
-    protected readonly document: string;
+    protected readonly document: string; // "protected" grants child classes access to this prop
 
     constructor(name: string, document: string) {
         this.name = name;
@@ -13,11 +13,15 @@ export class Property {
     // Can also be initialized like this
     constructor(
         readonly address: string,
-        private readonly value: number,
+        private _value: number, // private props can only be read within the class
     ) {}
 
-    getValue(): number {
-        return this.value;
+    set value(newValue: number) {
+        this._value = newValue;
+    }
+
+    get value(): number {
+        return this._value;
     }
 }
 
@@ -35,8 +39,11 @@ export class Owner extends Person {
     }
 
     listProperties(): void {
+        console.log(this.document); // "document" can be accessed since it was defined as protected instead of private
         this.properties.forEach((property) => {
-            console.log(property.address, property.getValue());
+            console.log(property.address, property.value);
         });
     }
 }
+
+// Abstract - classes that have the need to "re-specify" some abstract props and functions when creating child classes. Useful for cases like creating classes for an RPG game
